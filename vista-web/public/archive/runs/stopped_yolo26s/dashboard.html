@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VISTA · stopped_demo.mp4</title>
+<style>
+:root{--ink:#132b38;--muted:#607480;--teal:#06889a;--line:#dbe4e8;--paper:#f5f8f9;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif}
+.shell{max-width:1200px;margin:auto;padding:32px 28px 64px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px}
+.brand{font-weight:850;letter-spacing:.12em;color:var(--teal);font-size:19px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--teal);font-weight:700;font-size:12px}
+h1{font-size:clamp(32px,4vw,52px);letter-spacing:-.035em;margin:24px 0 8px}p{line-height:1.6}.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}.stat,.panel{background:var(--white);border:1px solid var(--line);border-radius:12px}
+.stat{padding:22px}.stat span{display:block;color:var(--muted);font-size:14px}.stat strong{display:block;font-size:38px;margin-top:8px;letter-spacing:-.03em}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:20px}.panel{padding:22px;margin-bottom:20px}h2{font-size:19px;margin:0 0 18px}
+video{width:100%;aspect-ratio:768/432;background:#11232d;border-radius:7px}.downloads{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+a.button{display:inline-block;padding:9px 13px;border:1px solid var(--line);border-radius:7px;text-decoration:none;color:var(--ink);font-size:13px;font-weight:650}a.button:hover{border-color:var(--teal);color:var(--teal)}
+.directions>div{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:12px 0}.directions strong{font-size:18px}.directions span{text-transform:capitalize;color:var(--muted)}
+dl{display:grid;grid-template-columns:130px 1fr;gap:10px 14px;font-size:14px}dt{color:var(--muted)}dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+svg{width:100%;height:auto}.bar-value{fill:var(--ink);font-size:13px;font-weight:700}.axis-label{fill:var(--muted);font-size:11px}
+input{width:100%;max-width:320px;padding:10px 12px;border:1px solid var(--line);border-radius:7px;font:inherit;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}th,td{padding:12px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+.tag{display:inline-block;padding:4px 8px;border-radius:4px;background:#e0f2f2;color:#067181;font-weight:700;text-transform:capitalize}.tag.stop{background:#fff0d8;color:#9d5d09}.empty{color:var(--muted);text-align:center;padding:32px}
+.note{border-left:3px solid var(--teal);padding-left:14px;color:var(--muted);font-size:14px}@media(max-width:760px){.stats,.grid{grid-template-columns:1fr}.shell{padding:20px}table{font-size:12px}}
+</style></head><body><main class="shell">
+<header class="top"><div class="brand">VISTA</div><div class="muted">Vehicle Intelligence & Smart Traffic Analytics</div></header>
+<div class="eyebrow" style="margin-top:28px">Video analysis · prototype report</div>
+<h1>Traffic, made inspectable.</h1><p class="muted">stopped_demo.mp4 · 6.0s analyzed · 768 × 432 px</p>
+<section class="stats"><div class="stat"><span>Directional crossings</span><strong>0</strong></div>
+<div class="stat"><span>Visible stop events</span><strong>1</strong></div>
+<div class="stat"><span>Frames processed</span><strong>60</strong></div></section>
+<div class="grid"><div>
+<section class="panel"><h2>Annotated footage</h2><video controls preload="metadata" src="annotated.mp4"></video>
+<div class="downloads"><a class="button" href="annotated.mp4" download>Download video</a><a class="button" href="events.csv" download>Download events CSV</a><a class="button" href="summary.json" download>Download JSON</a></div></section>
+<section class="panel"><h2>Crossings over time</h2><svg role="img" aria-label="Crossings over video time" viewBox="0 0 840 190" preserveAspectRatio="xMidYMid meet"><line x1="20" y1="155" x2="820" y2="155" stroke="#c8d4da"/><rect x="30.0" y="155.0" width="380.0" height="0.0" rx="4" fill="#06889a"/><text x="220.0" y="147.0" text-anchor="middle" class="bar-value">0</text><text x="220.0" y="177" text-anchor="middle" class="axis-label">0s</text><rect x="430.0" y="155.0" width="380.0" height="0.0" rx="4" fill="#06889a"/><text x="620.0" y="147.0" text-anchor="middle" class="bar-value">0</text><text x="620.0" y="177" text-anchor="middle" class="axis-label">3s</text></svg></section></div>
+<aside><section class="panel"><h2>Direction counts</h2><div class="directions"><div><span>No crossing direction recorded</span><strong>0</strong></div></div></section>
+<section class="panel"><h2>Run setup</h2><dl><dt>Detector</dt><dd>yolo26s.pt</dd><dt>Tracker</dt><dd>botsort.yaml</dd>
+<dt>Counting line</dt><dd>horizontal at 55%</dd><dt>Stop zone</dt><dd>(0.02, 0.05, 0.98, 0.94)</dd><dt>Stop rule</dt><dd>≥ 2.0s, ≤ 8.0 px/s</dd></dl></section>
+<section class="panel"><h2>What this measures</h2><p class="note">Events come from tracked boxes in this camera view. A visible stop is a stationary-track proxy inside the marked zone. It does not measure physical queue length, road speed, delay, or the reason a vehicle stopped.</p></section></aside></div>
+<section class="panel"><h2>Event log</h2><input id="search" type="search" placeholder="Filter by type, class, direction or track ID" aria-label="Filter events">
+<table><thead><tr><th>Video time</th><th>Event</th><th>Class</th><th>Track</th><th>Detail</th></tr></thead><tbody id="eventRows"><tr data-search="stop car 1 "><td>2.0s</td><td><span class="tag stop">stop</span></td><td>car</td><td>#1</td><td>2.0s visible stop</td></tr></tbody></table></section>
+<p class="muted" style="font-size:12px">Prototype output. Check detections and event counts against manually labelled footage before reporting accuracy.</p>
+</main><script>document.getElementById('search').addEventListener('input',function(){const query=this.value.toLowerCase().trim();document.querySelectorAll('#eventRows tr[data-search]').forEach(row=>{row.hidden=!row.dataset.search.includes(query)})})</script></body></html>

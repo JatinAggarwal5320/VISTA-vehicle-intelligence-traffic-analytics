@@ -1,0 +1,2 @@
+type,time_s,track_id,vehicle_class,direction,duration_s
+stop,2.0,1,car,,2.0

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102326">
+  <title>Benchmark · Vehicle Intelligence and Smart Traffic Analytics</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="/" class="brand" aria-label="VISTA overview">
+        <span class="brand-mark"><span>V</span></span>
+        <span class="brand-copy"><strong>VISTA</strong><small>TRAFFIC INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-kicker">WORKSPACE</div>
+      <nav class="primary-nav">
+        <a class="nav-item " href="/"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item " href="/analyze/"><span class="nav-icon">◉</span> Analyze footage</a>
+        <a class="nav-item " href="/runs/"><span class="nav-icon">≡</span> Review runs</a>
+        <a class="nav-item " href="/actions/"><span class="nav-icon">↗</span> Action center</a>
+        <a class="nav-item " href="/observations/"><span class="nav-icon">⌖</span> Road observations</a>
+        <a class="nav-item active" href="/benchmark/"><span class="nav-icon">▤</span> Benchmark</a>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="live-dot"></span> PUBLISHED PYTHON EVIDENCE
+        <p>YOLO26s · BoT-SORT<br>Saved results from the full Python project.</p>
+      </div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-path"><span>VISTA</span><span class="slash">/</span>Benchmark</div>
+        <div class="topbar-right"><span class="system-dot"></span> PUBLIC VIEWER <span class="topbar-date">2026 / PROJECT BUILD</span></div>
+      </header>
+      <main class="content">
+<div class="page-heading"><div><span class="eyebrow">MEASURED EVIDENCE / 04</span><h1>Benchmark</h1><p>Two real clips. One manually reviewed crossing list for each. Same tracking and camera settings for both models.</p></div><span class="page-index">11 REVIEWED EVENTS</span></div>
+<section class="benchmark-hero"><div><span class="eyebrow eyebrow-light">WHAT WE CAN CLAIM</span><h2>11 of 11 crossings matched</h2><p>YOLO26s on the two included audited clips. This is a small, single-reviewer event check—not an estimate for other roads or cameras.</p></div><div class="benchmark-figure"><strong>11<span>/11</span></strong><small>WITHIN ±1 SECOND</small></div></section>
+
+<div class="section-heading"><div><span class="eyebrow">MODEL COMPARISON</span><h2>Results by scene</h2></div></div>
+<div class="panel table-scroll"><table class="data-table benchmark-table"><thead><tr><th>SCENE</th><th>MODEL</th><th>MANUAL</th><th>MATCHED</th><th>EXTRA</th><th>MISSED</th><th>RECALL</th><th>TIME</th></tr></thead><tbody>
+<tr><td><strong>Overhead road</strong></td><td>YOLOv8n baseline</td><td>4</td><td>2</td><td>0</td><td>2</td><td><strong>50%</strong></td><td>9.29s</td></tr><tr><td><strong>Overhead road</strong></td><td>YOLO26s primary</td><td>4</td><td>4</td><td>0</td><td>0</td><td><strong>100%</strong></td><td>15.79s</td></tr><tr><td><strong>Traffic signal</strong></td><td>YOLOv8n baseline</td><td>7</td><td>7</td><td>0</td><td>0</td><td><strong>100%</strong></td><td>6.45s</td></tr><tr><td><strong>Traffic signal</strong></td><td>YOLO26s primary</td><td>7</td><td>7</td><td>0</td><td>0</td><td><strong>100%</strong></td><td>10.05s</td></tr>
+</tbody></table></div>
+<div class="benchmark-notes"><article class="panel"><span class="eyebrow">METHOD</span><h3>One-to-one event matching</h3><p>Predicted and reviewed events must agree on type, direction, optional vehicle class, and timestamp within ±1 second. Each event can match once.</p></article><article class="panel"><span class="eyebrow">LIMIT</span><h3>Short, single-reviewer sample</h3><p>Eleven crossings across 50 seconds of footage do not establish performance in new light, weather, road layouts, or heavy occlusion. No real stop events were manually labeled.</p></article></div>
+<div class="evidence-note"><strong>Reproduce the calculation</strong><p>Run <code>python benchmark.py</code> inside the project folder. It reads the saved model summaries and manual CSV labels, then rewrites the benchmark JSON.</p></div>
+
+</main>
+      <footer class="site-footer">VISTA · Vehicle Intelligence and Smart Traffic Analytics <span>Public evidence viewer · Live browser analysis uses a separate model</span></footer>
+    </div>
+  </div>
+</body>
+</html>

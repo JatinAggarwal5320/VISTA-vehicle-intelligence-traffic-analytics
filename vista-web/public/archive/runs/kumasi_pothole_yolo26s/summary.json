@@ -1,0 +1,118 @@
+{
+  "source": "kumasi_pothole_10fps.mp4",
+  "model": "yolo26s.pt",
+  "tracker": "botsort.yaml",
+  "fps": 10.0,
+  "width": 854,
+  "height": 480,
+  "frames": 207,
+  "tracked_boxes": 2221,
+  "unique_tracks": 74,
+  "duration_s": 20.7,
+  "processing_s": 10.73,
+  "processing_fps": 19.29,
+  "video": "annotated.mp4",
+  "crossings": 10,
+  "stops": 1,
+  "by_direction": {
+    "top_to_bottom": 3,
+    "bottom_to_top": 7
+  },
+  "config": {
+    "line_axis": "y",
+    "line_at": 0.65,
+    "zone": [
+      0.1,
+      0.45,
+      0.72,
+      0.95
+    ],
+    "model": "yolo26s.pt",
+    "tracker": "botsort.yaml",
+    "confidence": 0.25,
+    "stop_seconds": 2.0,
+    "max_stationary_speed_px_s": 8.0,
+    "line_margin_px": 5.0,
+    "max_frames": null,
+    "device": null
+  },
+  "events": [
+    {
+      "type": "crossing",
+      "time_s": 0.6,
+      "track_id": 9,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 0.9,
+      "track_id": 11,
+      "direction": "bottom_to_top",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 4.3,
+      "track_id": 12,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 6.0,
+      "track_id": 74,
+      "direction": "bottom_to_top",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 6.2,
+      "track_id": 2,
+      "direction": "bottom_to_top",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 8.1,
+      "track_id": 12,
+      "direction": "bottom_to_top",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 8.5,
+      "track_id": 40,
+      "direction": "bottom_to_top",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 9.9,
+      "track_id": 12,
+      "duration_s": 2.0,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 10.4,
+      "track_id": 9,
+      "direction": "bottom_to_top",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 11.0,
+      "track_id": 91,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 12.7,
+      "track_id": 91,
+      "direction": "bottom_to_top",
+      "vehicle_class": "truck"
+    }
+  ]
+}

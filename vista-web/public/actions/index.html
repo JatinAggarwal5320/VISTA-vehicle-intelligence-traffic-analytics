@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102326">
+  <title>Action center · Vehicle Intelligence and Smart Traffic Analytics</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="/" class="brand" aria-label="VISTA overview">
+        <span class="brand-mark"><span>V</span></span>
+        <span class="brand-copy"><strong>VISTA</strong><small>TRAFFIC INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-kicker">WORKSPACE</div>
+      <nav class="primary-nav">
+        <a class="nav-item " href="/"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item " href="/analyze/"><span class="nav-icon">◉</span> Analyze footage</a>
+        <a class="nav-item " href="/runs/"><span class="nav-icon">≡</span> Review runs</a>
+        <a class="nav-item active" href="/actions/"><span class="nav-icon">↗</span> Action center</a>
+        <a class="nav-item " href="/observations/"><span class="nav-icon">⌖</span> Road observations</a>
+        <a class="nav-item " href="/benchmark/"><span class="nav-icon">▤</span> Benchmark</a>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="live-dot"></span> PUBLISHED PYTHON EVIDENCE
+        <p>YOLO26s · BoT-SORT<br>Saved results from the full Python project.</p>
+      </div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-path"><span>VISTA</span><span class="slash">/</span>Action center</div>
+        <div class="topbar-right"><span class="system-dot"></span> PUBLIC VIEWER <span class="topbar-date">2026 / PROJECT BUILD</span></div>
+      </header>
+      <main class="content">
+<div class="page-heading"><div><span class="eyebrow">EVIDENCE → DECISION → FOLLOW-UP</span><h1>What needs attention?</h1><p>Each task is tied to saved footage or a marked road observation. Record what a reviewer did; the software does not contact an authority.</p></div></div>
+<section class="action-summary"><div><strong>7</strong><span>OPEN LEADS</span></div><div><strong>0</strong><span>IN REVIEW</span></div><div><strong>0</strong><span>REFERRED BY TEAM</span></div><div><strong>0</strong><span>CLOSED</span></div></section>
+
+<div class="section-heading"><div><span class="eyebrow">EVIDENCE-BASED TASKS</span><h2>Review queue</h2></div></div>
+<div class="action-list">
+
+<article class="panel action-card" id="traffic-cuttack_yolo26s">
+  <div class="action-top"><div><span class="eyebrow">TRAFFIC RUN / cuttack_yolo26s</span><h3>Verify crossings at 0–5s</h3><p>cuttack link road 30s.mp4</p></div><span class="action-state state-open">OPEN</span></div>
+  <div class="action-columns"><div><span class="action-label">WHY THIS IS HERE</span><p>1 model crossing candidate in video time 0–5s; 3 in 30s overall.</p></div><div><span class="action-label">NEXT HUMAN STEP</span><p>Review this video window against the original footage. Correct track-ID switches and add manual labels before using the count. 29 low-motion stop candidate(s) also need manual review; they are not measured queue delay.</p></div></div>
+  <div class="action-gate"><strong>Decision boundary</strong><span>No signal-timing or congestion recommendation: this clip is under two minutes and has no comparable repeat recording.</span></div>
+  <div class="action-bottom"><a class="text-link" href="/runs/cuttack_yolo26s/">Inspect source evidence <span>→</span></a><span class="muted">Follow-up updates are saved in the local Python app.</span></div>
+  
+</article>
+
+<article class="panel action-card" id="traffic-bengaluru_night_yolo26s">
+  <div class="action-top"><div><span class="eyebrow">TRAFFIC RUN / bengaluru_night_yolo26s</span><h3>Verify crossings at 15–20s</h3><p>bengaluru night 20s.mp4</p></div><span class="action-state state-open">OPEN</span></div>
+  <div class="action-columns"><div><span class="action-label">WHY THIS IS HERE</span><p>8 model crossing candidates in video time 15–20s; 18 in 20s overall.</p></div><div><span class="action-label">NEXT HUMAN STEP</span><p>Review this video window against the original footage. Correct track-ID switches and add manual labels before using the count. 16 low-motion stop candidate(s) also need manual review; they are not measured queue delay.</p></div></div>
+  <div class="action-gate"><strong>Decision boundary</strong><span>No signal-timing or congestion recommendation: this clip is under two minutes and has no comparable repeat recording.</span></div>
+  <div class="action-bottom"><a class="text-link" href="/runs/bengaluru_night_yolo26s/">Inspect source evidence <span>→</span></a><span class="muted">Follow-up updates are saved in the local Python app.</span></div>
+  
+</article>
+
+<article class="panel action-card" id="traffic-kumasi_pothole_yolo26s">
+  <div class="action-top"><div><span class="eyebrow">TRAFFIC RUN / kumasi_pothole_yolo26s</span><h3>Verify crossings at 5–10s</h3><p>kumasi pothole 10fps.mp4</p></div><span class="action-state state-open">OPEN</span></div>
+  <div class="action-columns"><div><span class="action-label">WHY THIS IS HERE</span><p>4 model crossing candidates in video time 5–10s; 10 in 20.7s overall.</p></div><div><span class="action-label">NEXT HUMAN STEP</span><p>Review this video window against the original footage. Correct track-ID switches and add manual labels before using the count. 1 low-motion stop candidate(s) also need manual review; they are not measured queue delay.</p></div></div>
+  <div class="action-gate"><strong>Decision boundary</strong><span>No signal-timing or congestion recommendation: this clip is under two minutes and has no comparable repeat recording.</span></div>
+  <div class="action-bottom"><a class="text-link" href="/runs/kumasi_pothole_yolo26s/">Inspect source evidence <span>→</span></a><span class="muted">Follow-up updates are saved in the local Python app.</span></div>
+  
+</article>
+
+<article class="panel action-card" id="traffic-colonel_by_yolo26s_final">
+  <div class="action-top"><div><span class="eyebrow">TRAFFIC RUN / colonel_by_yolo26s_final</span><h3>Collect a repeat recording at this site</h3><p>colonel by signal 10fps.mp4</p></div><span class="action-state state-open">OPEN</span></div>
+  <div class="action-columns"><div><span class="action-label">WHY THIS IS HERE</span><p>2 model crossing candidates in video time 5–10s; 7 in 20s overall.</p></div><div><span class="action-label">NEXT HUMAN STEP</span><p>The included clip has manual crossing labels. Record independent, dated footage from the same camera during comparable periods before claiming a recurring flow pattern.</p></div></div>
+  <div class="action-gate"><strong>Decision boundary</strong><span>No signal-timing or congestion recommendation: this clip is under two minutes and has no comparable repeat recording.</span></div>
+  <div class="action-bottom"><a class="text-link" href="/runs/colonel_by_yolo26s_final/">Inspect source evidence <span>→</span></a><span class="muted">Follow-up updates are saved in the local Python app.</span></div>
+  
+</article>
+
+<article class="panel action-card" id="traffic-intel_yolo26s_measured">
+  <div class="action-top"><div><span class="eyebrow">TRAFFIC RUN / intel_yolo26s_measured</span><h3>Collect a repeat recording at this site</h3><p>intel car detection.mp4</p></div><span class="action-state state-open">OPEN</span></div>
+  <div class="action-columns"><div><span class="action-label">WHY THIS IS HERE</span><p>2 model crossing candidates in video time 15–20s; 4 in 30.16s overall.</p></div><div><span class="action-label">NEXT HUMAN STEP</span><p>The included clip has manual crossing labels. Record independent, dated footage from the same camera during comparable periods before claiming a recurring flow pattern.</p></div></div>
+  <div class="action-gate"><strong>Decision boundary</strong><span>No signal-timing or congestion recommendation: this clip is under two minutes and has no comparable repeat recording.</span></div>
+  <div class="action-bottom"><a class="text-link" href="/runs/intel_yolo26s_measured/">Inspect source evidence <span>→</span></a><span class="muted">Follow-up updates are saved in the local Python app.</span></div>
+  
+</article>
+
+<article class="panel action-card" id="observation-OBS-KUMASI-001">
+  <div class="action-top"><div><span class="eyebrow">ROAD CONDITION / OBS-KUMASI-001</span><h3>Locate and verify this road issue</h3><p>Kumasi, Ghana (exact road unknown)</p></div><span class="action-state state-open">OPEN</span></div>
+  <div class="action-columns"><div><span class="action-label">WHY THIS IS HERE</span><p>Broken and uneven road surface is visible in the near lane as vehicles pass. Congestion is visible too, but this clip alone does not establish that the defect caused it.</p></div><div><span class="action-label">NEXT HUMAN STEP</span><p>Arrange an on-site check at the reported area: Kumasi, Ghana (exact road unknown). Confirm the exact defect point and whether it is still present; capture a new dated view.</p></div></div>
+  <div class="action-gate"><strong>Decision boundary</strong><span>One source is an inspection lead, not a verified recurring defect or proof of traffic impact.</span></div>
+  <div class="action-bottom"><a class="text-link" href="/observations/OBS-KUMASI-001/">Inspect source evidence <span>→</span></a><span class="muted">Follow-up updates are saved in the local Python app.</span></div>
+  
+</article>
+
+<article class="panel action-card" id="observation-OBS-KOLKATA-001">
+  <div class="action-top"><div><span class="eyebrow">ROAD CONDITION / OBS-KOLKATA-001</span><h3>Locate and verify this road issue</h3><p>Jodhpur Park, Kolkata (road name unconfirmed; source camera at 22.503136, 88.364902)</p></div><span class="action-state state-open">OPEN</span></div>
+  <div class="action-columns"><div><span class="action-label">WHY THIS IS HERE</span><p>Several broken and eroded patches are visible along the road edge. The source provides camera coordinates; the exact defect point and current condition require a field check.</p></div><div><span class="action-label">NEXT HUMAN STEP</span><p>Arrange an on-site check near source camera 22.503136, 88.364902. Confirm the exact defect point and whether it is still present; capture a new dated view.</p></div></div>
+  <div class="action-gate"><strong>Decision boundary</strong><span>One source is an inspection lead, not a verified recurring defect or proof of traffic impact.</span></div>
+  <div class="action-bottom"><a class="text-link" href="/observations/OBS-KOLKATA-001/">Inspect source evidence <span>→</span></a><span class="muted">Follow-up updates are saved in the local Python app.</span></div>
+  
+</article>
+
+</div>
+<div class="evidence-note"><strong>What this solves</strong><p>Raw counts become a smaller, traceable inspection queue. A five-second window tells the reviewer where to validate a model result; a marked road issue gives a field team evidence to check. Operational changes require longer, repeated, site-matched data and an authorized decision maker.</p></div>
+</main>
+      <footer class="site-footer">VISTA · Vehicle Intelligence and Smart Traffic Analytics <span>Public evidence viewer · Live browser analysis uses a separate model</span></footer>
+    </div>
+  </div>
+</body>
+</html>

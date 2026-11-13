@@ -1,0 +1,87 @@
+{
+  "source": "colonel_by_signal_10fps.mp4",
+  "model": "yolov8n.pt",
+  "tracker": "botsort.yaml",
+  "fps": 10.0,
+  "width": 960,
+  "height": 540,
+  "frames": 200,
+  "duration_s": 20.0,
+  "processing_s": 6.45,
+  "processing_fps": 31.01,
+  "video": "annotated.mp4",
+  "crossings": 7,
+  "stops": 0,
+  "by_direction": {
+    "top_to_bottom": 7
+  },
+  "config": {
+    "line_axis": "y",
+    "line_at": 0.6,
+    "zone": [
+      0.45,
+      0.05,
+      1.0,
+      1.0
+    ],
+    "model": "yolov8n.pt",
+    "tracker": "botsort.yaml",
+    "confidence": 0.25,
+    "stop_seconds": 2.0,
+    "max_stationary_speed_px_s": 8.0,
+    "line_margin_px": 5.0,
+    "max_frames": null,
+    "device": null
+  },
+  "events": [
+    {
+      "type": "crossing",
+      "time_s": 2.8,
+      "track_id": 1,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 5.3,
+      "track_id": 4,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 8.6,
+      "track_id": 9,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 11.9,
+      "track_id": 17,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 13.5,
+      "track_id": 42,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 16.8,
+      "track_id": 44,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 19.2,
+      "track_id": 47,
+      "direction": "top_to_bottom",
+      "vehicle_class": "car"
+    }
+  ]
+}

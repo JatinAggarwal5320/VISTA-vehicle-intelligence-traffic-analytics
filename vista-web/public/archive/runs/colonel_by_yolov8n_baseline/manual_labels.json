@@ -1,0 +1,44 @@
+[
+  {
+    "type": "crossing",
+    "time_s": 2.75,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 5.25,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 8.75,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 11.75,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 13.25,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 16.75,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 19.25,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  }
+]

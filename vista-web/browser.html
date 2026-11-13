@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e2937" />
+    <title>VISTA · Vehicle Intelligence and Smart Traffic Analytics</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="/" aria-label="VISTA home"><span class="brand-mark">V</span><span>VISTA</span></a>
+        <span class="header-detail">Browser analyzer · separate model from Python dashboard</span>
+        <a class="browser-back" href="/">← Evidence dashboard</a>
+        <span class="local-badge">Runs in your browser</span>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="intro">
+        <p class="eyebrow">Traffic video analysis</p>
+        <h1>Know where to<br /><em>look next.</em></h1>
+        <p class="lead">VISTA turns traffic footage and road observations into review tasks with source evidence. Inspect a real Python result below, then analyze a clip in your browser.</p>
+      </section>
+
+      <section class="published-section" aria-labelledby="published-heading">
+        <div class="section-head"><div><p class="step-label">01 / Evidence to action</p><h2 id="published-heading">Review leads from real footage</h2><p class="fine-print">Precomputed with the Python YOLO26s / BoT-SORT pipeline. These are inspection leads, not verified congestion or signal-timing recommendations.</p></div></div>
+        <div id="publishedEvidence" class="published-grid"><p class="fine-print">Loading saved evidence…</p></div>
+        <p class="fine-print evidence-scope">The Cuttack and Bengaluru event counts have not been fully manually labeled. The Kolkata photo was published by another photographer; its camera position is an area to check, not the defect's exact location. Follow-up states are stored only in your browser.</p>
+      </section>
+
+      <div class="section-head analyzer-heading"><div><p class="step-label">02 / Analyze a new clip</p><h2>Run the browser model</h2><p class="fine-print">YOLOv8n ONNX and a lightweight browser tracker. This implementation is separate from the Python results above.</p></div></div>
+
+      <div class="workspace">
+        <section class="panel setup-panel" aria-labelledby="setup-heading">
+          <div class="section-head"><div><p class="step-label">01 / Set up</p><h2 id="setup-heading">Choose a video</h2></div><span id="sourceLabel" class="source-pill">No clip selected</span></div>
+          <div class="upload-row">
+            <label class="upload-button" for="fileInput">Upload traffic video<input id="fileInput" type="file" accept="video/mp4,video/quicktime,video/webm,video/x-msvideo" hidden /></label>
+            <button id="sampleButton" class="text-button" type="button">Use included sample <span aria-hidden="true">↗</span></button>
+            <button id="stopDemoButton" class="text-button" type="button">Try stop demo <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="fine-print">MP4, MOV or WebM. Processing happens on this device; the video is not uploaded to a server.</p>
+          <p class="fine-print">Included clip: <a href="https://github.com/intel-iot-devkit/sample-videos" target="_blank" rel="noopener noreferrer">Intel IoT DevKit sample videos</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</p>
+          <p class="fine-print">The stop demo is synthetic: a frame at 15.5s from that clip is frozen for six seconds. It presets 10% detection confidence.</p>
+
+          <div id="configuration" hidden>
+            <div class="preview-heading"><div><h3>Camera view</h3><p>Drag on the image to mark the visible stop zone.</p></div><button id="resetZone" class="text-button compact" type="button">Reset zone</button></div>
+            <canvas id="setupCanvas" class="setup-canvas" role="img" aria-label="Video frame with counting line and stop zone"></canvas>
+            <label class="field wide"><span>Preview frame <output id="previewTime">0.0s</output></span><input id="frameScrub" type="range" min="0" max="1" step="0.1" value="0" /></label>
+            <div class="fields">
+              <label class="field"><span>Counting line</span><select id="axis"><option value="y">Horizontal</option><option value="x">Vertical</option></select></label>
+              <label class="field"><span>Line position <output id="lineValue">55%</output></span><input id="line" type="range" min="5" max="95" value="55" /></label>
+              <label class="field"><span>Frames per second</span><select id="sampleFps"><option value="2">2 · quick check</option><option value="4" selected>4 · balanced</option><option value="8">8 · more detail</option><option value="12">12 · slower</option></select></label>
+              <label class="field"><span>Detection confidence <output id="confidenceValue">25%</output></span><input id="confidence" type="range" min="10" max="70" value="25" /></label>
+              <label class="field"><span>Visible stop after</span><select id="stopSeconds"><option value="1">1 second</option><option value="2" selected>2 seconds</option><option value="3">3 seconds</option><option value="5">5 seconds</option></select></label>
+              <label class="field"><span>Low motion threshold</span><select id="stationarySpeed"><option value="4">4 px/s</option><option value="8" selected>8 px/s</option><option value="12">12 px/s</option><option value="20">20 px/s</option></select></label>
+            </div>
+            <div class="action-row"><button id="startButton" class="primary-button" type="button">Analyze video <span aria-hidden="true">→</span></button><span id="videoDetails" class="fine-print"></span></div>
+          </div>
+        </section>
+
+        <aside class="side-column">
+          <section class="panel status-panel" aria-labelledby="status-heading"><p class="step-label">02 / Process</p><h2 id="status-heading">Run status</h2><div id="statusMessage" class="status-message">Select a clip to begin.</div><div id="progressWrap" class="progress-wrap" hidden><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><div class="progress-meta"><span id="progressText">0 / 0 frames</span><span id="progressPercent">0%</span></div><button id="cancelButton" class="text-button compact" type="button">Stop analysis</button></div></section>
+          <section class="panel explainer"><p class="step-label">What gets recorded</p><div class="explain-item"><span class="number">01</span><div><strong>Directional crossing</strong><p>A tracked vehicle moves across the line.</p></div></div><div class="explain-item"><span class="number">02</span><div><strong>Visible stop</strong><p>A tracked vehicle stays nearly still inside the zone.</p></div></div><p class="boundary">Results describe what is visible in this camera view. Check them against manual labels before reporting accuracy.</p></section>
+          <section class="panel history-panel"><div class="section-head tight"><div><p class="step-label">Saved on this device</p><h2>Recent runs</h2></div></div><div id="runHistory" class="history-list"><p class="fine-print">No saved runs yet.</p></div></section>
+        </aside>
+      </div>
+
+      <section id="results" class="results" hidden aria-labelledby="results-heading">
+        <div class="section-head result-heading"><div><p class="step-label">03 / Review</p><h2 id="results-heading">Analysis result</h2><p id="resultMeta" class="fine-print"></p></div><div class="export-actions"><button id="exportCsv" class="secondary-button" type="button">Events CSV</button><button id="exportJson" class="secondary-button" type="button">Run JSON</button></div></div>
+        <div class="metric-grid"><div class="metric"><span>Directional crossings</span><strong id="crossingCount">0</strong></div><div class="metric"><span>Visible stop events</span><strong id="stopCount">0</strong></div><div class="metric"><span>Frames analyzed</span><strong id="frameCount">0</strong></div><div class="metric"><span>Processing time</span><strong id="elapsedCount">—</strong></div></div>
+        <section class="panel live-action"><p class="step-label">What to do with this result</p><h3 id="liveActionTitle">Review the footage</h3><p id="liveActionDetail"></p><button id="liveActionJump" class="secondary-button" type="button">Open review window ↗</button><p class="fine-print">A short clip cannot establish a recurring traffic pattern or justify changing a signal.</p></section>
+        <div class="review-grid">
+          <div class="review-main">
+            <section class="panel"><div class="section-head tight"><div><h3>Footage with tracked boxes</h3><p class="fine-print">Click an event below to jump to its video time.</p></div><label class="toggle"><input id="showOverlay" type="checkbox" checked /> Show overlay</label></div><div class="video-stack"><video id="resultVideo" controls playsinline preload="metadata"></video><canvas id="resultCanvas" aria-hidden="true"></canvas></div><div class="legend"><span><i class="legend-line"></i> counting line</span><span><i class="legend-zone"></i> stop zone</span><span><i class="legend-box"></i> tracked vehicle</span></div></section>
+            <section class="panel"><div class="section-head tight"><div><h3>Event log</h3><p class="fine-print">Each entry has a video timestamp and track ID.</p></div><input id="eventFilter" class="search" type="search" placeholder="Filter events" aria-label="Filter events" /></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Event</th><th>Vehicle</th><th>Track</th><th>Detail</th></tr></thead><tbody id="eventRows"></tbody></table></div></section>
+          </div>
+          <div class="review-side">
+            <section class="panel"><h3>Crossings over time</h3><div id="timeline" class="timeline"></div><div id="directionCounts" class="direction-counts"></div></section>
+            <section class="panel"><h3>Manual check</h3><p class="fine-print">Pause the video at an event and add what you observe. Labels stay on this device.</p><div class="label-fields"><label class="field"><span>Event</span><select id="manualType"><option value="crossing">Crossing</option><option value="stop">Visible stop</option></select></label><label class="field" id="manualDirectionWrap"><span>Direction</span><select id="manualDirection"></select></label><button id="addLabel" class="secondary-button" type="button">Add label at current time</button></div><div id="manualLabels" class="manual-labels"></div><div id="metrics" class="metrics"><p class="fine-print">Add manual labels to calculate precision and recall.</p></div><button id="exportLabels" class="text-button compact" type="button">Download labels CSV</button></section>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="shell"><span>VISTA · Fixed-camera traffic analytics</span><span>Prototype outputs require manual validation.</span></div></footer>
+    <video id="sourceVideo" preload="auto" muted playsinline hidden></video>
+    <video id="analysisVideo" preload="auto" muted playsinline hidden></video>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
