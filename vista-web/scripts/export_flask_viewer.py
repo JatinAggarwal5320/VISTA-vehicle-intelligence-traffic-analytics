@@ -68,9 +68,12 @@ def main() -> None:
     archive = PUBLIC / "archive"
     (PUBLIC / "static").mkdir(parents=True, exist_ok=True)
     (PUBLIC / "static" / "app.js").unlink(missing_ok=True)
-    for file in (PYTHON / "web_ui" / "static").iterdir():
+    static_source = PYTHON / "web_ui" / "static"
+    for file in static_source.rglob("*"):
         if file.is_file():
-            shutil.copy2(file, PUBLIC / "static" / file.name)
+            target = PUBLIC / "static" / file.relative_to(static_source)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(file, target)
 
     for run_id in sorted(FINAL_RUNS):
         folder = PYTHON / "runs" / run_id

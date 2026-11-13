@@ -38,3 +38,5 @@ Commit and deploy the changed `public` files. The export contains the saved stat
 The two-clip manual audit contains 11 reviewed line crossings. The saved YOLO26s runs matched 11/11; the YOLOv8n baseline matched 9/11 under a ±1 second event matching window. This small audit is not a general accuracy estimate. India scene event totals are not fully validated, and no signal-timing or road-delay claim is made from them. A separate synthetic frozen-frame clip checks the visible-stop rule.
 
 The public Cuttack and Bengaluru videos and Kolkata road photo are credited in the app. They are not team-captured footage. The marked road issue is a field-check request; the exact location and current condition remain unverified.
+
+The interface self-hosts [IBM Plex Sans and IBM Plex Mono](https://github.com/IBM/plex) under the [SIL Open Font License](../phase2_prototype/web_ui/static/fonts/OFL-LICENSE.txt).
