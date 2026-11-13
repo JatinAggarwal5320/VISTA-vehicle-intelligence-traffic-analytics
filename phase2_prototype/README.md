@@ -1,6 +1,6 @@
 # VISTA · Python traffic analytics project
 
-VISTA turns fixed-camera footage and manually marked road issues into **specific inspection tasks with evidence attached**. It detects cars, motorcycles, buses, and trucks with Ultralytics YOLO, keeps IDs across frames with BoT-SORT, counts line crossings, and marks vehicles that remain nearly stationary in a chosen image zone. The server and analysis pipeline are Python; the custom interface uses HTML/CSS and a small JavaScript file for video preview and progress updates.
+VISTA turns fixed-camera footage and manually marked road issues into **specific inspection tasks with evidence attached**. It detects cars, motorcycles, buses, and trucks with Ultralytics YOLO, keeps IDs across frames with BoT-SORT, counts line crossings, and marks vehicles that remain nearly stationary in a chosen image zone. The server and analysis pipeline are Python; the custom interface uses HTML and CSS. The analysis form posts directly to Flask and waits for the Python result.
 
 This is a working minor project with two manually audited **real** traffic clips, two India scene tests, a public road-defect clip, pretrained model checkpoints, saved outputs, crossing labels, and a reproducible comparison. It does not train a new detector or control a signal.
 

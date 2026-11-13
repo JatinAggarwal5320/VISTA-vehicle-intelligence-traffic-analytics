@@ -77,6 +77,17 @@ class WebAppTests(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertFalse((self.data / "runs").exists() and any((self.data / "runs").iterdir()))
 
+    def test_python_form_processes_sample_without_javascript(self):
+        page = self.client.get("/analyze")
+        self.assertIn(b'action="/analyze/run"', page.data)
+        self.assertNotIn(b'<script', page.data)
+        response = self.client.post("/analyze/run", data={"source": "signal", "model": "yolo26s",
+                                                          "use_scene_preset": "yes", "max_frames": "2",
+                                                          "line_at": "0.2"})
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.headers["Location"].startswith("/runs/run_"))
+        self.assertEqual(self.calls[0][2].line_at, .60)
+
     def test_photo_observation_keeps_original_and_downloadable_report(self):
         ok, encoded = cv2.imencode(".jpg", np.zeros((120, 180, 3), dtype=np.uint8))
         self.assertTrue(ok)

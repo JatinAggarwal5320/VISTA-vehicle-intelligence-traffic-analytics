@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102326">
+  <title>Overview · Vehicle Intelligence and Smart Traffic Analytics</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="/" class="brand" aria-label="VISTA overview">
+        <span class="brand-mark"><span>V</span></span>
+        <span class="brand-copy"><strong>VISTA</strong><small>TRAFFIC INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-kicker">WORKSPACE</div>
+      <nav class="primary-nav">
+        <a class="nav-item active" href="/"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item " href="/analyze/"><span class="nav-icon">◉</span> Analyze footage</a>
+        <a class="nav-item " href="/runs/"><span class="nav-icon">≡</span> Review runs</a>
+        <a class="nav-item " href="/actions/"><span class="nav-icon">↗</span> Action center</a>
+        <a class="nav-item " href="/observations/"><span class="nav-icon">⌖</span> Road observations</a>
+        <a class="nav-item " href="/benchmark/"><span class="nav-icon">▤</span> Benchmark</a>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="live-dot"></span> LOCAL PYTHON ENGINE
+        <p>YOLO26s · BoT-SORT<br>Saved results from the full Python project.</p>
+      </div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-path"><span>VISTA</span><span class="slash">/</span>Overview</div>
+        <div class="topbar-right"><span class="system-dot"></span> PUBLIC EVIDENCE VIEWER <span class="topbar-date">SOURCE-LINKED OUTPUT</span></div>
+      </header>
+      <main class="content">
+<section class="hero" aria-labelledby="overview-title">
+  <div class="hero-copy">
+    <span class="eyebrow eyebrow-light">VISTA / TRAFFIC REVIEW</span>
+    <h1 id="overview-title">Vehicle events,<br><em>with evidence attached.</em></h1>
+    <p>Track a crossing at a chosen line, then open the exact video window before trusting the count. Road observations follow the same rule: keep the source with the next action.</p>
+    <div class="hero-actions">
+      <a class="button button-bright" href="/actions/">Review current cases <span aria-hidden="true">↗</span></a>
+      <a class="text-link light" href="/analyze/">Analyze footage <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="hero-proof">PYTHON PIPELINE <span>YOLO26s · BoT-SORT · SOURCE-LINKED EVENTS</span></div>
+  </div>
+  <figure class="hero-media">
+    <img src="/static/poster_cuttack.jpg" alt="Public fixed-camera view of traffic on Link Road in Cuttack, Odisha">
+    <figcaption><span>01 / CAMERA VIEW</span><strong>Link Road, Cuttack</strong><a href="https://commons.wikimedia.org/wiki/File:Moving_vehicles_in_Link_road,_Cuttack,_Odisha.webm" target="_blank" rel="noopener">Subhashish Panigrahi · CC BY-SA 3.0 ↗</a></figcaption>
+  </figure>
+</section>
+
+<section class="evidence-strip" aria-label="Evidence available in this build">
+  <div><strong>11<span>/11</span></strong><p>crossings matched in the two-clip audit</p></div>
+  <div><strong>02</strong><p>manually marked road observations</p></div>
+  <div><strong>07</strong><p>review tasks linked to saved evidence</p></div>
+</section>
+
+<div class="section-heading"><div><span class="eyebrow">SAVED EVIDENCE / TWO EXAMPLES</span><h2>Start with the source</h2></div><a class="text-link" href="/runs/">All saved runs <span>→</span></a></div>
+<section class="case-grid">
+  <article class="case-card">
+    <div class="case-media">
+      <video controls preload="metadata" poster="/static/signal_poster.jpg" aria-label="Annotated signalized junction video"><source src="/archive/runs/colonel_by_yolo26s_final/annotated.mp4" type="video/mp4"></video>
+      <span class="case-stamp">VIDEO / MANUALLY AUDITED</span>
+    </div>
+    <div class="case-body"><div><span class="eyebrow">TRAFFIC / 20-SECOND CLIP</span><h3>Signalized junction</h3><p>Seven crossings checked against the source. The next task is to collect a repeat recording before calling it a traffic pattern.</p></div><a class="case-open" href="/runs/colonel_by_yolo26s_final/" aria-label="Open signalized junction run">↗</a></div>
+  </article>
+  <article class="case-card">
+    <div class="case-media"><img src="/archive/observations/evidence/OBS-KOLKATA-001.jpg" alt="Marked road surface damage from the credited public photo in Kolkata"><span class="case-stamp">PHOTO / REVIEWER MARKED</span></div>
+    <div class="case-body"><div><span class="eyebrow">ROAD CONDITION / KOLKATA</span><h3>Verify the defect on site</h3><p>A marked public photo gives an area to inspect. The exact defect point and its present condition still need a field check.</p></div><a class="case-open" href="/observations/OBS-KOLKATA-001/" aria-label="Open Kolkata road observation">↗</a></div>
+  </article>
+</section>
+
+<section class="ledger-preview" aria-label="Audited crossing sample">
+  <div><span class="eyebrow">A COUNT YOU CAN CHECK</span><h2>Seven crossings. Every one has a time.</h2><p>Open the run to see the tracked ID, direction, and annotated source beside each event.</p><a class="text-link" href="/runs/colonel_by_yolo26s_final/">Inspect the event ledger <span>→</span></a></div>
+  <ol><li><span>02.8s</span><strong>Car</strong><small>Top To Bottom</small></li><li><span>05.4s</span><strong>Car</strong><small>Top To Bottom</small></li><li><span>08.6s</span><strong>Car</strong><small>Top To Bottom</small></li><li><span>11.9s</span><strong>Car</strong><small>Top To Bottom</small></li><li><span>13.5s</span><strong>Car</strong><small>Top To Bottom</small></li><li><span>16.9s</span><strong>Car</strong><small>Top To Bottom</small></li><li><span>19.2s</span><strong>Car</strong><small>Top To Bottom</small></li></ol>
+</section>
+
+<section class="method-line"><span class="eyebrow">WORKFLOW</span><div><b>01</b><strong>Mark the line</strong><p>Choose where a movement counts.</p></div><div><b>02</b><strong>Check the event</strong><p>Verify the timestamp in the footage.</p></div><div><b>03</b><strong>Record the follow-up</strong><p>Keep the decision beside its evidence.</p></div></section>
+<p class="scope-line">Scope of this build: 11 manually reviewed crossings across two short real clips. India scene event totals are unvalidated. No signal-timing or delay claim is made from these videos. <a href="/benchmark/">Read the benchmark ↗</a></p>
+</main>
+      <footer class="site-footer">VISTA · Vehicle Intelligence and Smart Traffic Analytics <span>Public evidence viewer · Saved Python results need scene-specific validation</span></footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -5,7 +5,7 @@
 <div class="page-heading"><div><span class="eyebrow">NEW ANALYSIS / 01</span><h1>Analyze footage</h1><p>Choose a fixed-camera video, set the counting line, and run the Python model.</p></div><span class="page-index">01 — 04</span></div>
 {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
 <div class="analyze-layout">
-  <form id="analysis-form" class="panel form-panel" enctype="multipart/form-data">
+  <form id="analysis-form" class="panel form-panel" action="{{ url_for('run_analysis') }}" method="post" enctype="multipart/form-data">
     <div class="form-section-heading"><span class="step-number">01</span><div><h2>Video source</h2><p>Start with a supplied clip or add your own.</p></div></div>
     <div class="source-options">
       {% for key, item in sources.items() %}
@@ -13,12 +13,13 @@
       {% endfor %}
       <label class="source-option"><input type="radio" name="source" value="upload" {% if selected == 'upload' %}checked{% endif %}><span class="source-radio"></span><span><strong>Upload your footage</strong><small>MP4 / MOV / AVI / WEBM · up to 250 MB</small></span></label>
     </div>
-    <div class="upload-wrap" id="upload-wrap" {% if selected != 'upload' %}hidden{% endif %}><label class="field-label" for="video-upload">VIDEO FILE</label><input id="video-upload" type="file" name="video" accept=".mp4,.mov,.avi,.webm,video/*"><small>Use a fixed camera and keep vehicles in view around the counting line.</small></div>
+    <div class="upload-wrap" id="upload-wrap"><label class="field-label" for="video-upload">VIDEO FILE</label><input id="video-upload" type="file" name="video" accept=".mp4,.mov,.avi,.webm,video/*"><small>Use a fixed camera and keep vehicles in view around the counting line.</small></div>
     <div class="form-section-heading section-divider"><span class="step-number">02</span><div><h2>Detection setup</h2><p>The default matches the selected clip.</p></div></div>
+    <label class="check-field preset-check"><input type="checkbox" name="use_scene_preset" value="yes" checked><span>Use the tested line and zone for the selected sample</span></label>
     <div class="form-grid">
       <label class="field"><span class="field-label">MODEL</span><select name="model"><option value="yolo26s">YOLO26s · primary</option><option value="yolov8n">YOLOv8n · baseline</option></select></label>
       <label class="field"><span class="field-label">COUNTING LINE</span><select name="axis"><option value="y">Horizontal</option><option value="x">Vertical</option></select></label>
-      <label class="field field-wide"><span class="field-label">LINE POSITION <output id="line-value">60%</output></span><input type="range" name="line_at" id="line-at" min="0.05" max="0.95" step="0.01" value="0.60"><span class="field-help">Place it across the vehicle movement.</span></label>
+      <label class="field field-wide"><span class="field-label">LINE POSITION (0–1)</span><input type="number" name="line_at" id="line-at" min="0.05" max="0.95" step="0.01" value="0.60"><span class="field-help">0.60 means 60% across the image. Uncheck the sample preset to use this value.</span></label>
       <label class="field"><span class="field-label">DETECTION CONFIDENCE</span><input type="number" name="confidence" min="0.05" max="0.70" step="0.05" value="0.25"></label>
       <label class="field"><span class="field-label">FRAME LIMIT</span><input type="number" name="max_frames" min="0" step="100" value="0"><small>0 = whole video</small></label>
     </div>
@@ -30,15 +31,12 @@
       <label class="field"><span class="field-label">VISIBLE STOP AFTER (S)</span><input type="number" name="stop_seconds" min="0.5" max="5" step="0.5" value="2.0"></label>
       <label class="field"><span class="field-label">LOW MOTION (PX/S)</span><input type="number" name="stationary_px_s" min="2" max="20" step="1" value="8"></label>
     </div></details>
-    <div class="form-submit"><button class="button button-dark" type="submit" id="analyze-button">Run analysis <span>↗</span></button><span>Runs locally · no API key required</span></div>
-    <div id="job-progress" class="job-progress" hidden role="status" aria-live="polite"><div class="progress-top"><strong id="progress-title">Preparing analysis…</strong><span id="progress-percent">0%</span></div><div class="progress-bar"><span id="progress-fill"></span></div><small id="progress-detail">Loading model and tracker</small></div>
-    <div id="analysis-error" class="alert error" hidden></div>
+    <div class="form-submit"><button class="button button-dark" type="submit" id="analyze-button">Run analysis <span>↗</span></button><span>Python processes the clip here. Keep this tab open until the result appears.</span></div>
   </form>
   <aside class="analyze-aside">
-    <div class="panel preview-panel"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3 id="preview-title">Signalized junction</h3></div><span class="badge">REAL FOOTAGE</span></div>
-      <video id="source-preview" controls preload="metadata" poster="{{ url_for('static', filename='signal_poster.jpg') }}"><source src="{{ url_for('sample_video', source_key=selected if selected in sources else 'signal') }}" type="video/mp4"></video>
-      <p id="preview-caption">A fixed-camera sample with manually reviewed line crossings.</p>
-      <a id="preview-source-link" class="preview-source-link" href="https://commons.wikimedia.org/wiki/File:Temporary_traffic_signal_at_Colonel_By_Drive.webm" target="_blank" rel="noopener">View source and license ↗</a>
+    <div class="panel preview-panel">
+      {% for key, item in sources.items() %}<div class="preview-item preview-{{ key }}"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3>{{ item[0] }}</h3></div><span class="badge">{{ 'SYNTHETIC TEST' if key == 'stop' else 'PUBLIC FOOTAGE' }}</span></div><video controls preload="none" poster="{{ url_for('static', filename=posters[key]) }}"><source src="{{ url_for('sample_video', source_key=key) }}" type="video/mp4"></video><p>{{ item[2] }}. Source and license details are recorded with the sample files.</p></div>{% endfor %}
+      <div class="preview-item preview-upload"><div class="panel-top"><div><span class="eyebrow">YOUR FOOTAGE</span><h3>Upload a fixed-camera clip</h3></div></div><p>Choose a file in the form. Its analysis and saved evidence stay on this computer.</p></div>
     </div>
     <div class="side-note"><span class="eyebrow">HOW TO READ THE OUTPUT</span><h3>A count needs its context.</h3><p>VISTA records a crossing when a tracked vehicle moves across your line. The run page keeps the timestamp, direction, ID, and annotated footage together.</p><div class="note-rule"></div><p class="small">Visible stops use low motion in image pixels. They are not measured road speed or delay.</p></div>
   </aside>

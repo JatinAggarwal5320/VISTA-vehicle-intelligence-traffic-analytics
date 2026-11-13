@@ -42,11 +42,11 @@ PYTHON_FILES = [
 WEB_FILES = [
     *(
         file
-        for folder in ("src", "public", "scripts")
+        for folder in ("public", "scripts")
         for file in (ROOT / "vista-web" / folder).rglob("*")
         if file.is_file()
     ),
-    *(ROOT / "vista-web" / name for name in ("README.md", "package.json", "package-lock.json", "index.html", "browser.html", "vite.config.js", "vercel.json")),
+    *(ROOT / "vista-web" / name for name in ("README.md", "vercel.json")),
 ]
 
 

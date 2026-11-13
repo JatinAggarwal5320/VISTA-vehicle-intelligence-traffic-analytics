@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#102326">
   <title>Analyze footage · Vehicle Intelligence and Smart Traffic Analytics</title>
   <link rel="stylesheet" href="/static/style.css">
-  <script src="/static/app.js" defer></script>
 </head>
 <body>
   <div class="shell">
@@ -25,31 +24,30 @@
         <a class="nav-item " href="/benchmark/"><span class="nav-icon">▤</span> Benchmark</a>
       </nav>
       <div class="sidebar-foot">
-        <span class="live-dot"></span> PUBLISHED PYTHON EVIDENCE
+        <span class="live-dot"></span> LOCAL PYTHON ENGINE
         <p>YOLO26s · BoT-SORT<br>Saved results from the full Python project.</p>
       </div>
     </aside>
     <div class="main-area">
       <header class="topbar">
         <div class="topbar-path"><span>VISTA</span><span class="slash">/</span>Analyze footage</div>
-        <div class="topbar-right"><span class="system-dot"></span> PUBLIC VIEWER <span class="topbar-date">2026 / PROJECT BUILD</span></div>
+        <div class="topbar-right"><span class="system-dot"></span> PUBLIC EVIDENCE VIEWER <span class="topbar-date">SOURCE-LINKED OUTPUT</span></div>
       </header>
       <main class="content">
 <div class="page-heading"><div><span class="eyebrow">NEW ANALYSIS / 01</span><h1>Analyze footage</h1><p>Choose a fixed-camera video, set the counting line, and run the Python model.</p></div><span class="page-index">01 — 04</span></div>
 
 <div class="analyze-layout">
-  <div class="panel form-panel"><span class="eyebrow">LIVE ANALYSIS ON VERCEL</span><h2>Use the browser analyzer</h2><p>The full Python model needs a persistent server. The public analyzer runs YOLOv8n on your device and keeps uploaded footage in your browser.</p><a class="button button-dark" href="/browser.html">Open browser analyzer ↗</a></div>
+  <div class="panel form-panel"><span class="eyebrow">PYTHON ANALYSIS</span><h2>Run the model locally</h2><p>VISTA processes video with YOLO26s and BoT-SORT in Python. The public site shows saved evidence; running a new clip needs the local Python app.</p><a class="button button-dark" href="https://github.com/JatinAggarwal5320/VISTA-vehicle-intelligence-traffic-analytics/tree/main/phase2_prototype">Open Python setup ↗</a></div>
   <aside class="analyze-aside">
-    <div class="panel preview-panel"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3 id="preview-title">Signalized junction</h3></div><span class="badge">REAL FOOTAGE</span></div>
-      <video id="source-preview" controls preload="metadata" poster="/static/signal_poster.jpg"><source src="/archive/samples/colonel_by_signal_10fps.mp4" type="video/mp4"></video>
-      <p id="preview-caption">A fixed-camera sample with manually reviewed line crossings.</p>
-      <a id="preview-source-link" class="preview-source-link" href="https://commons.wikimedia.org/wiki/File:Temporary_traffic_signal_at_Colonel_By_Drive.webm" target="_blank" rel="noopener">View source and license ↗</a>
+    <div class="panel preview-panel">
+      <div class="preview-item preview-signal"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3>Signalized junction</h3></div><span class="badge">PUBLIC FOOTAGE</span></div><video controls preload="none" poster="/static/signal_poster.jpg"><source src="/archive/samples/colonel_by_signal_10fps.mp4" type="video/mp4"></video><p>20 s · fixed camera · CC0. Source and license details are recorded with the sample files.</p></div><div class="preview-item preview-overhead"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3>Overhead road</h3></div><span class="badge">PUBLIC FOOTAGE</span></div><video controls preload="none" poster="/static/poster_overhead.jpg"><source src="/archive/samples/intel_car_detection.mp4" type="video/mp4"></video><p>30 s · elevated view · CC BY 4.0. Source and license details are recorded with the sample files.</p></div><div class="preview-item preview-cuttack"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3>Cuttack, India</h3></div><span class="badge">PUBLIC FOOTAGE</span></div><video controls preload="none" poster="/static/poster_cuttack.jpg"><source src="/archive/samples/cuttack_link_road_30s.mp4" type="video/mp4"></video><p>30 s · fixed junction view · CC BY-SA 3.0. Source and license details are recorded with the sample files.</p></div><div class="preview-item preview-bengaluru"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3>Bengaluru, India</h3></div><span class="badge">PUBLIC FOOTAGE</span></div><video controls preload="none" poster="/static/poster_bengaluru.jpg"><source src="/archive/samples/bengaluru_night_20s.mp4" type="video/mp4"></video><p>20 s · night congestion · CC BY-SA 4.0. Source and license details are recorded with the sample files.</p></div><div class="preview-item preview-pothole"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3>Road defect reference</h3></div><span class="badge">PUBLIC FOOTAGE</span></div><video controls preload="none" poster="/static/poster_pothole.jpg"><source src="/archive/samples/kumasi_pothole_10fps.mp4" type="video/mp4"></video><p>20.7 s · crowded road · CC BY-SA 4.0. Source and license details are recorded with the sample files.</p></div><div class="preview-item preview-stop"><div class="panel-top"><div><span class="eyebrow">SOURCE PREVIEW</span><h3>Synthetic stop rule</h3></div><span class="badge">SYNTHETIC TEST</span></div><video controls preload="none" poster="/static/poster_stop.jpg"><source src="/archive/samples/stopped_demo.mp4" type="video/mp4"></video><p>6 s · frozen frame · synthetic. Source and license details are recorded with the sample files.</p></div>
+      <div class="preview-item preview-upload"><div class="panel-top"><div><span class="eyebrow">YOUR FOOTAGE</span><h3>Upload a fixed-camera clip</h3></div></div><p>Choose a file in the form. Its analysis and saved evidence stay on this computer.</p></div>
     </div>
     <div class="side-note"><span class="eyebrow">HOW TO READ THE OUTPUT</span><h3>A count needs its context.</h3><p>VISTA records a crossing when a tracked vehicle moves across your line. The run page keeps the timestamp, direction, ID, and annotated footage together.</p><div class="note-rule"></div><p class="small">Visible stops use low motion in image pixels. They are not measured road speed or delay.</p></div>
   </aside>
 </div>
 </main>
-      <footer class="site-footer">VISTA · Vehicle Intelligence and Smart Traffic Analytics <span>Public evidence viewer · Live browser analysis uses a separate model</span></footer>
+      <footer class="site-footer">VISTA · Vehicle Intelligence and Smart Traffic Analytics <span>Public evidence viewer · Saved Python results need scene-specific validation</span></footer>
     </div>
   </div>
 </body>

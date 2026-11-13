@@ -93,8 +93,8 @@ table{{width:100%;border-collapse:collapse;text-align:left;font-size:14px}}th,td
 <section class="panel"><h2>Run setup</h2><dl><dt>Detector</dt><dd>{_esc(summary['model'])}</dd><dt>Tracker</dt><dd>{_esc(summary['tracker'])}</dd>
 <dt>Counting line</dt><dd>{_esc(line_description)}</dd><dt>Stop zone</dt><dd>{_esc(config['zone'])}</dd><dt>Stop rule</dt><dd>≥ {config['stop_seconds']}s, ≤ {config['max_stationary_speed_px_s']} px/s</dd></dl></section>
 <section class="panel"><h2>What this measures</h2><p class="note">Events come from tracked boxes in this camera view. A visible stop is a stationary-track proxy inside the marked zone. It does not measure physical queue length, road speed, delay, or the reason a vehicle stopped.</p></section></aside></div>
-<section class="panel"><h2>Event log</h2><input id="search" type="search" placeholder="Filter by type, class, direction or track ID" aria-label="Filter events">
+<section class="panel"><h2>Event log</h2>
 <table><thead><tr><th>Video time</th><th>Event</th><th>Class</th><th>Track</th><th>Detail</th></tr></thead><tbody id="eventRows">{''.join(rows)}</tbody></table></section>
 <p class="muted" style="font-size:12px">Prototype output. Check detections and event counts against manually labelled footage before reporting accuracy.</p>
-</main><script>document.getElementById('search').addEventListener('input',function(){{const query=this.value.toLowerCase().trim();document.querySelectorAll('#eventRows tr[data-search]').forEach(row=>{{row.hidden=!row.dataset.search.includes(query)}})}})</script></body></html>"""
+</main></body></html>"""
     path.write_text(page, encoding="utf-8")

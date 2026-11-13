@@ -32,6 +32,19 @@ SOURCE_DATA = {
     "pothole": ("Road defect reference", "kumasi_pothole_10fps.mp4", "20.7 s · crowded road · CC BY-SA 4.0"),
     "stop": ("Synthetic stop rule", "stopped_demo.mp4", "6 s · frozen frame · synthetic"),
 }
+SCENE_PRESETS = {
+    "signal": ("y", .60, (.45, .05, 1.00, 1.00), .25),
+    "overhead": ("y", .55, (.02, .05, .98, .94), .25),
+    "cuttack": ("x", .50, (.05, .25, .95, .95), .25),
+    "bengaluru": ("y", .65, (.05, .40, .60, .95), .25),
+    "pothole": ("y", .65, (.10, .45, .72, .95), .25),
+    "stop": ("y", .55, (.02, .05, .98, .94), .10),
+}
+SOURCE_POSTERS = {
+    "signal": "signal_poster.jpg", "overhead": "poster_overhead.jpg",
+    "cuttack": "poster_cuttack.jpg", "bengaluru": "poster_bengaluru.jpg",
+    "pothole": "poster_pothole.jpg", "stop": "poster_stop.jpg",
+}
 POTHOLE_URL = "https://commons.wikimedia.org/wiki/File:Cars_Moving_into_pothole.webm"
 FINAL_RUNS = {
     "colonel_by_yolo26s_final", "colonel_by_yolov8n_baseline",
@@ -141,10 +154,11 @@ def create_app(data_dir: Path | None = None, process_fn=process_video) -> Flask:
         rows = run_rows()
         featured = next((row for row in rows if row["id"] == "colonel_by_yolo26s_final"), rows[0] if rows else None)
         records = load_records(observations)
+        road_record = next((record for record in records if record["id"] == "OBS-KOLKATA-001"), records[0] if records else None)
         benchmark_path = data / "evaluation_data" / "benchmark_results.json"
         benchmark = json.loads(benchmark_path.read_text()) if benchmark_path.exists() else None
         return render_template("overview.html", page="overview", featured=featured,
-                               runs=rows[:5], records=records, benchmark=benchmark,
+                               runs=rows[:5], records=records, road_record=road_record, benchmark=benchmark,
                                open_actions=sum(a["review"]["status"] == "open" for a in action_rows()))
 
     @app.get("/actions")
@@ -175,20 +189,31 @@ def create_app(data_dir: Path | None = None, process_fn=process_video) -> Flask:
         if selected not in SOURCE_DATA and selected != "upload":
             selected = "signal"
         return render_template("analyze.html", page="analyze", selected=selected,
-                               sources=SOURCE_DATA, error=request.args.get("error"))
+                               sources=SOURCE_DATA, posters=SOURCE_POSTERS,
+                               error=request.args.get("error"))
 
+    @app.post("/analyze/run", endpoint="run_analysis")
     @app.post("/api/jobs")
     def start_job():
+        direct = request.path == "/analyze/run"
+
+        def invalid(message: str):
+            if direct:
+                return redirect(url_for("analyze_page", error=message))
+            return jsonify(error=message), 400
+
         form = request.form
         source_key = form.get("source", "signal")
         if source_key not in SOURCE_DATA and source_key != "upload":
-            return jsonify(error="Choose a valid video source."), 400
+            return invalid("Choose a valid video source.")
         try:
             axis = form.get("axis", "y")
             line_at = parsed_float(form, "line_at", .60)
             confidence = parsed_float(form, "confidence", .25)
             zone = tuple(parsed_float(form, key, default) for key, default in (
                 ("zone_x1", .05), ("zone_y1", .05), ("zone_x2", .95), ("zone_y2", .90)))
+            if form.get("use_scene_preset") == "yes" and source_key in SCENE_PRESETS:
+                axis, line_at, zone, confidence = SCENE_PRESETS[source_key]
             model_key = form.get("model", "yolo26s")
             if model_key not in ("yolo26s", "yolov8n"):
                 raise ValueError("Choose a valid model")
@@ -203,16 +228,16 @@ def create_app(data_dir: Path | None = None, process_fn=process_video) -> Flask:
             )
             config.validate()
         except (ValueError, TypeError) as error:
-            return jsonify(error=str(error)), 400
+            return invalid(str(error))
         if source_key == "upload":
             uploaded = request.files.get("video")
             suffix = Path(uploaded.filename or "").suffix.lower() if uploaded else ""
             if not uploaded or suffix not in (".mp4", ".mov", ".avi", ".webm"):
-                return jsonify(error="Upload an MP4, MOV, AVI, or WEBM video."), 400
+                return invalid("Upload an MP4, MOV, AVI, or WEBM video.")
         else:
             source = samples / SOURCE_DATA[source_key][1]
             if not source.is_file():
-                return jsonify(error="The sample video is missing."), 400
+                return invalid("The sample video is missing.")
 
         job_id = uuid.uuid4().hex[:12]
         run_id = f"run_{datetime.now():%Y%m%d_%H%M%S}_{job_id[:6]}"
@@ -221,6 +246,12 @@ def create_app(data_dir: Path | None = None, process_fn=process_video) -> Flask:
         if source_key == "upload":
             source = folder / f"source{suffix}"
             uploaded.save(source)
+        if direct:
+            try:
+                process_fn(source, folder, config, progress=lambda _done, _total: None)
+            except Exception as error:
+                return invalid(f"Analysis failed: {error}")
+            return redirect(url_for("run_detail", run_id=run_id))
         with jobs_lock:
             jobs[job_id] = {"status": "queued", "done": 0, "total": 0, "run_id": run_id}
 
