@@ -26,7 +26,10 @@ from web_app import FINAL_RUNS, SOURCE_DATA, create_app  # noqa: E402
 
 def clean_for_public(page: str) -> str:
     page = page.replace("LOCAL PYTHON MODEL", "PUBLIC EVIDENCE VIEWER")
-    page = page.replace("Evidence stays on this machine.", "Saved results from the full Python project.")
+    page = re.sub(r'<div class="sidebar-foot">.*?</div>',
+                  '<div class="sidebar-foot"><span class="live-dot"></span> SAVED PYTHON EVIDENCE'
+                  '<p>Source-linked runs<br>Open the local app to add results.</p></div>',
+                  page, flags=re.S)
     page = page.replace("SYSTEM READY", "PUBLIC VIEWER")
     page = page.replace("Local research prototype · Model results need scene-specific validation",
                         "Public evidence viewer · Saved Python results need scene-specific validation")
