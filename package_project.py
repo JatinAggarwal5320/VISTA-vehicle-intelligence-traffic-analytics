@@ -29,6 +29,7 @@ PYTHON_FILES = [
     ROOT / "phase2_prototype" / "yolov8n.pt",
     *(ROOT / "phase2_prototype" / "sample_data").glob("*"),
     *(ROOT / "phase2_prototype" / "evaluation_data").glob("*"),
+    *(file for file in (ROOT / "phase2_prototype" / "notebooks").rglob("*") if file.is_file()),
     *(file for file in (ROOT / "phase2_prototype" / "observations").rglob("*") if file.is_file()),
     *(file for file in (ROOT / "phase2_prototype" / "actions").rglob("*") if file.is_file()),
     *(file for file in (ROOT / "phase2_prototype" / "web_ui").rglob("*") if file.is_file()),

@@ -4,6 +4,8 @@ VISTA turns fixed-camera footage and manually marked road issues into **specific
 
 This is a working minor project with two manually audited **real** traffic clips, two India scene tests, a public road-defect clip, pretrained model checkpoints, saved outputs, crossing labels, and a reproducible comparison. It does not train a new detector or control a signal.
 
+The executed [model and evidence notebook](notebooks/01_shared_model_and_evidence.ipynb) loads **one `yolo26s.pt` checkpoint** and applies it to a frame from each of the six included videos. Its saved montage and code show the shared detector, the camera-specific line/zone presets, the two-clip event audit, and the manual road observations. It is a provenance and evaluation notebook, **not a fine-tuning notebook**. No team-trained `best.pt` exists.
+
 ## Start the app
 
 From this folder, with Python 3.10 or newer:
@@ -111,3 +113,4 @@ Saved outputs show exact source, model, tracker, settings, timestamps, and track
 - decision_engine.py: deterministic next-action rules, review brief, and local follow-up status.
 - dashboard.py: standalone HTML run report.
 - test_*.py: rule, evaluation, and parser tests.
+- notebooks/01_shared_model_and_evidence.ipynb: executed shared-checkpoint demonstration, figure, and evaluation audit.
