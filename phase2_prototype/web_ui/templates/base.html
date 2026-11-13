@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102326">
+  <title>{% block title %}VISTA{% endblock %} · Vehicle Intelligence and Smart Traffic Analytics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a href="{{ url_for('overview') }}" class="brand" aria-label="VISTA overview">
+        <span class="brand-mark"><span>V</span></span>
+        <span class="brand-copy"><strong>VISTA</strong><small>TRAFFIC INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-kicker">WORKSPACE</div>
+      <nav class="primary-nav">
+        <a class="nav-item {% if page == 'overview' %}active{% endif %}" href="{{ url_for('overview') }}"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item {% if page == 'analyze' %}active{% endif %}" href="{{ url_for('analyze_page') }}"><span class="nav-icon">◉</span> Analyze footage</a>
+        <a class="nav-item {% if page == 'runs' %}active{% endif %}" href="{{ url_for('runs_page') }}"><span class="nav-icon">≡</span> Review runs</a>
+        <a class="nav-item {% if page == 'actions' %}active{% endif %}" href="{{ url_for('actions_page') }}"><span class="nav-icon">↗</span> Action center</a>
+        <a class="nav-item {% if page == 'observations' %}active{% endif %}" href="{{ url_for('observations_page') }}"><span class="nav-icon">⌖</span> Road observations</a>
+        <a class="nav-item {% if page == 'benchmark' %}active{% endif %}" href="{{ url_for('benchmark_page') }}"><span class="nav-icon">▤</span> Benchmark</a>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="live-dot"></span> LOCAL PYTHON ENGINE
+        <p>YOLO26s · BoT-SORT<br>Evidence stays on this machine.</p>
+      </div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-path"><span>VISTA</span><span class="slash">/</span>{% block breadcrumb %}Overview{% endblock %}</div>
+        <div class="topbar-right"><span class="system-dot"></span> SYSTEM READY <span class="topbar-date">2026 / PROJECT BUILD</span></div>
+      </header>
+      <main class="content">{% block content %}{% endblock %}</main>
+      <footer class="site-footer">VISTA · Vehicle Intelligence and Smart Traffic Analytics <span>Local research prototype · Model results need scene-specific validation</span></footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Review runs{% endblock %}
+{% block breadcrumb %}Review runs{% endblock %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">ANALYSIS LIBRARY / 02</span><h1>Review runs</h1><p>Each run keeps the model settings, footage, tracked events, and export files together.</p></div><a class="button button-dark" href="{{ url_for('analyze_page') }}">New analysis <span>↗</span></a></div>
+<div class="section-heading tight"><div><span class="eyebrow">SAVED LOCALLY</span><h2>{{ runs|length }} analysis runs</h2></div></div>
+<div class="panel runs-table-wrap">
+  <table class="data-table runs-table"><thead><tr><th>RUN / SOURCE</th><th>MODEL</th><th>FOOTAGE</th><th>CROSSINGS</th><th>VISIBLE STOPS</th><th></th></tr></thead><tbody>
+  {% for row in runs %}
+  <tr><td><a class="table-primary" href="{{ url_for('run_detail', run_id=row.id) }}">{{ row.summary.source|replace('_', ' ') }}</a><span class="table-secondary">{{ row.id|replace('_', ' ') }}</span></td>
+    <td><span class="model-pill">{{ row.model_label }}</span></td>
+    <td>{{ row.summary.duration_s }} s <span class="table-secondary">{{ row.summary.frames }} frames</span></td>
+    <td class="table-number">{{ row.summary.crossings }}</td><td class="table-number">{{ row.summary.stops }}</td>
+    <td><a class="row-arrow" href="{{ url_for('run_detail', run_id=row.id) }}" aria-label="Open {{ row.id }}">↗</a></td></tr>
+  {% else %}<tr><td colspan="6" class="empty">No runs yet. Analyze a sample video to create one.</td></tr>{% endfor %}
+  </tbody></table>
+</div>
+<div class="evidence-note"><strong>Reading these numbers</strong><p>The signal and overhead benchmark runs have manually reviewed crossing labels. India footage and the public pothole clip are useful scene tests; their crossing and stop totals are model outputs without a complete manual audit.</p></div>
+{% endblock %}

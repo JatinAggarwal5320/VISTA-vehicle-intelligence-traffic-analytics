@@ -1,0 +1,62 @@
+{
+  "generated_from": "Saved Python YOLO26s / BoT-SORT results; action rules in phase2_prototype/decision_engine.py",
+  "cards": [
+    {
+      "id": "run:cuttack_yolo26s",
+      "kind": "traffic",
+      "source_id": "cuttack_yolo26s",
+      "title": "Verify crossings at 0–5s",
+      "evidence": "1 model crossing candidate in video time 0–5s; 3 in 30s overall.",
+      "next_step": "Review this video window against the original footage. Correct track-ID switches and add manual labels before using the count. 29 low-motion stop candidate(s) also need manual review; they are not measured queue delay.",
+      "gate": "No signal-timing or congestion recommendation: this clip is under two minutes and has no comparable repeat recording.",
+      "window_start": 0,
+      "window_label": "0–5s",
+      "audited": false,
+      "place": "Link Road, Cuttack, Odisha",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Moving_vehicles_in_Link_road,_Cuttack,_Odisha.webm",
+      "credit": "Subhashish Panigrahi / Wikimedia Commons · CC BY-SA 3.0",
+      "media_type": "video",
+      "media_url": "/evidence/cuttack_yolo26s.mp4",
+      "brief_url": "/evidence/cuttack_yolo26s-review-brief.html",
+      "duration_s": 30.0
+    },
+    {
+      "id": "run:bengaluru_night_yolo26s",
+      "kind": "traffic",
+      "source_id": "bengaluru_night_yolo26s",
+      "title": "Verify crossings at 15–20s",
+      "evidence": "8 model crossing candidates in video time 15–20s; 18 in 20s overall.",
+      "next_step": "Review this video window against the original footage. Correct track-ID switches and add manual labels before using the count. 16 low-motion stop candidate(s) also need manual review; they are not measured queue delay.",
+      "gate": "No signal-timing or congestion recommendation: this clip is under two minutes and has no comparable repeat recording.",
+      "window_start": 15,
+      "window_label": "15–20s",
+      "audited": false,
+      "place": "Ramana Maharshi Road, Bengaluru",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ramana_Maharshi_Road,_Bangalore_(2025)_02.webm",
+      "credit": "Gpkp / Wikimedia Commons · CC BY-SA 4.0",
+      "media_type": "video",
+      "media_url": "/evidence/bengaluru_night_yolo26s.mp4",
+      "brief_url": "/evidence/bengaluru_night_yolo26s-review-brief.html",
+      "duration_s": 20.0
+    },
+    {
+      "id": "observation:OBS-KOLKATA-001",
+      "kind": "observation",
+      "source_id": "OBS-KOLKATA-001",
+      "title": "Locate and verify this road issue",
+      "evidence": "Several broken and eroded patches are visible along the road edge. The source provides camera coordinates; the exact defect point and current condition require a field check.",
+      "next_step": "Arrange an on-site check near source camera 22.503136, 88.364902. Confirm the exact defect point and whether it is still present; capture a new dated view.",
+      "gate": "One source is an inspection lead, not a verified recurring defect or proof of traffic impact.",
+      "window_start": null,
+      "window_label": null,
+      "audited": false,
+      "place": "Jodhpur Park, Kolkata (road name unconfirmed; source camera at 22.503136, 88.364902)",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Potholes_(1_November_2026).jpg",
+      "credit": "Sbb1413 / Wikimedia Commons · CC BY-SA 3.0; 1280-pixel image copy used for this marked observation",
+      "media_type": "image",
+      "media_url": "/evidence/OBS-KOLKATA-001.jpg",
+      "brief_url": "/evidence/OBS-KOLKATA-001-report.html",
+      "media_date": "2026-11-01"
+    }
+  ]
+}

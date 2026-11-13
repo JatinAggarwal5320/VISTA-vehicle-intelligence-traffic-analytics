@@ -1,0 +1,67 @@
+{
+  "labels": "evaluation_data/intel_crossings.csv",
+  "label_count": 4,
+  "tolerance_s": 1.0,
+  "runs": [
+    {
+      "summary": "runs/intel_yolov8n_baseline/summary.json",
+      "source": "intel_car_detection.mp4",
+      "model": "yolov8n.pt",
+      "tracker": "botsort.yaml",
+      "frames": 377,
+      "processing_s": 9.29,
+      "counts": {
+        "crossings": 2,
+        "stops": 0
+      },
+      "scores": {
+        "crossing": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666
+        },
+        "stop": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    {
+      "summary": "runs/intel_yolo26s_measured/summary.json",
+      "source": "intel_car_detection.mp4",
+      "model": "yolo26s.pt",
+      "tracker": "botsort.yaml",
+      "frames": 377,
+      "processing_s": 15.79,
+      "counts": {
+        "crossings": 4,
+        "stops": 0
+      },
+      "scores": {
+        "crossing": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "stop": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  ]
+}

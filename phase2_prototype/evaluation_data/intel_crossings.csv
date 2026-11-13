@@ -1,0 +1,5 @@
+type,time_s,direction,vehicle_class
+crossing,6.75,bottom_to_top,car
+crossing,16.25,top_to_bottom,car
+crossing,17.25,bottom_to_top,car
+crossing,26.25,top_to_bottom,car

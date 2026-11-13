@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}New observation{% endblock %}
+{% block breadcrumb %}<a href="{{ url_for('observations_page') }}">Road observations</a><span class="slash">/</span>New record{% endblock %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">CREATE FIELD RECORD / 03</span><h1>Mark an observation</h1><p>A reviewer chooses the evidence frame and describes what is visibly there.</p></div><a class="text-link" href="{{ url_for('observations_page') }}">← All observations</a></div>
+<div class="source-tabs"><a href="{{ url_for('observation_new', source='public') }}" class="{% if source == 'public' %}selected{% endif %}">Public road clip</a><a href="{{ url_for('observation_new', source='run') }}" class="{% if source == 'run' %}selected{% endif %}">Saved VISTA run</a><a href="{{ url_for('observation_new', source='photo') }}" class="{% if source == 'photo' %}selected{% endif %}">Upload photo</a></div>
+{% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+<div class="observation-form-layout">
+<form class="panel form-panel" action="{{ url_for('observation_create') }}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="source" value="{{ source }}">
+  <div class="form-section-heading"><span class="step-number">01</span><div><h2>Source and time</h2><p>Keep where this evidence came from.</p></div></div>
+  {% if source == 'public' %}
+  <div class="source-info"><strong>Cars Moving into pothole · Kumasi, Ghana</strong><span>Amuzujoe / Wikimedia Commons · CC BY-SA 4.0 · 2020-02-26</span><a href="https://commons.wikimedia.org/wiki/File:Cars_Moving_into_pothole.webm" target="_blank" rel="noopener">Original source ↗</a></div>
+  <video controls preload="metadata" class="form-video"><source src="{{ url_for('sample_video', source_key='pothole') }}" type="video/mp4"></video>
+  <label class="field"><span class="field-label">FRAME TIME (SECONDS)</span><input type="number" name="video_time_s" min="0" max="20.6" step="0.1" value="{{ form.get('video_time_s', '12.0') }}" required></label>
+  {% elif source == 'run' %}
+  <label class="field"><span class="field-label">SAVED RUN</span><select name="run_id" required>{% for row in runs %}<option value="{{ row.id }}" {% if form.get('run_id') == row.id %}selected{% endif %}>{{ row.summary.source }} · {{ row.id }}</option>{% endfor %}</select></label>
+  <label class="field"><span class="field-label">FRAME TIME (SECONDS)</span><input type="number" name="video_time_s" min="0" step="0.1" value="{{ form.get('video_time_s', '0.0') }}" required></label>
+  <p class="field-help">Open the run first to choose a clear frame timestamp.</p>
+  {% else %}
+  <label class="field"><span class="field-label">ORIGINAL JPG OR PNG</span><input type="file" name="photo" accept=".jpg,.jpeg,.png,image/*" required></label>
+  <p class="field-help">The original image and marked copy are saved locally. Maximum 20 MB.</p>
+  {% endif %}
+  <div class="form-section-heading section-divider"><span class="step-number">02</span><div><h2>Describe the issue</h2><p>Use only what the image supports.</p></div></div>
+  <div class="form-grid"><label class="field"><span class="field-label">ISSUE TYPE</span><select name="category">{% for category in categories %}<option value="{{ category }}" {% if form.get('category') == category %}selected{% endif %}>{{ category }}</option>{% endfor %}</select></label>
+  <label class="field"><span class="field-label">MEDIA DATE</span><input type="date" name="media_date" value="{{ form.get('media_date', '2020-02-26' if source == 'public' else '') }}" {% if source == 'public' %}readonly{% endif %}></label>
+  <label class="field field-wide"><span class="field-label">LOCATION AS KNOWN</span><input type="text" name="location" maxlength="180" value="{{ form.get('location', 'Kumasi, Ghana (exact road unknown)' if source == 'public' else '') }}" placeholder="Road name and nearest junction, if confirmed" required></label>
+  <label class="check-field field-wide"><input type="checkbox" name="precise_location" value="yes" {% if form.get('precise_location') == 'yes' %}checked{% endif %} {% if source == 'public' %}disabled{% endif %}><span>I know the exact road or junction shown in the evidence</span></label>
+  <label class="field field-wide"><span class="field-label">WHAT CAN YOU SEE?</span><textarea name="description" rows="4" maxlength="800" required placeholder="Describe the visible condition. Avoid claiming it caused a delay unless measured.">{{ form.get('description', 'Broken and uneven road surface is visible in the near lane as vehicles pass. The clip alone does not establish whether this defect caused the congestion.' if source == 'public' else '') }}</textarea></label></div>
+  <div class="form-section-heading section-divider"><span class="step-number">03</span><div><h2>Mark the area</h2><p>Enter the issue rectangle as percentages of image width and height.</p></div></div>
+  <div class="form-grid compact"><label class="field"><span class="field-label">LEFT %</span><input type="number" name="box_left" min="0" max="99" value="{{ form.get('box_left', '32' if source == 'public' else '20') }}" required></label><label class="field"><span class="field-label">TOP %</span><input type="number" name="box_top" min="0" max="99" value="{{ form.get('box_top', '72' if source == 'public' else '20') }}" required></label><label class="field"><span class="field-label">RIGHT %</span><input type="number" name="box_right" min="1" max="100" value="{{ form.get('box_right', '65' if source == 'public' else '80') }}" required></label><label class="field"><span class="field-label">BOTTOM %</span><input type="number" name="box_bottom" min="1" max="100" value="{{ form.get('box_bottom', '91' if source == 'public' else '80') }}" required></label></div>
+  {% if source != 'public' %}<div class="form-section-heading section-divider"><span class="step-number">04</span><div><h2>Provenance</h2><p>Say who captured the media, if known.</p></div></div>
+  <div class="form-grid"><label class="field"><span class="field-label">SOURCE TYPE</span><select name="source_kind"><option>Source unknown</option><option>Team captured (reporter declared)</option><option>Public reference</option></select></label><label class="field"><span class="field-label">CREDIT / PHOTOGRAPHER</span><input type="text" name="source_credit" value="{{ form.get('source_credit', '') }}"></label><label class="field field-wide"><span class="field-label">SOURCE URL (IF PUBLIC)</span><input type="url" name="source_url" value="{{ form.get('source_url', '') }}"></label></div>{% endif %}
+  <div class="form-submit"><button class="button button-dark" type="submit">Save observation <span>↗</span></button><span>Creates a local record and standalone report</span></div>
+</form>
+<aside class="analyze-aside"><div class="side-note"><span class="eyebrow">EVIDENCE STANDARD</span><h3>Separate what you see from what you infer.</h3><p>A marked frame can show a road defect. It cannot by itself prove the exact location, how long the defect existed, or that it caused the traffic around it.</p><div class="note-rule"></div><p class="small">Use a second independently dated view of the same precise site before reporting a recurring pattern.</p></div></aside>
+</div>
+{% endblock %}

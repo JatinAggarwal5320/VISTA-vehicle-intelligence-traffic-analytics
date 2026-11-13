@@ -1,0 +1,26 @@
+[
+  {
+    "type": "crossing",
+    "time_s": 6.75,
+    "direction": "bottom_to_top",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 16.25,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 17.25,
+    "direction": "bottom_to_top",
+    "vehicle_class": "car"
+  },
+  {
+    "type": "crossing",
+    "time_s": 26.25,
+    "direction": "top_to_bottom",
+    "vehicle_class": "car"
+  }
+]

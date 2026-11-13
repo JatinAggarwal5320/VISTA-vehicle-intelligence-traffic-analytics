@@ -1,0 +1,8 @@
+type,time_s,track_id,vehicle_class,direction,duration_s
+crossing,2.8,1,car,top_to_bottom,
+crossing,5.3,4,car,top_to_bottom,
+crossing,8.6,9,car,top_to_bottom,
+crossing,11.9,17,car,top_to_bottom,
+crossing,13.5,42,car,top_to_bottom,
+crossing,16.8,44,car,top_to_bottom,
+crossing,19.2,47,car,top_to_bottom,

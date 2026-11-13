@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Benchmark{% endblock %}
+{% block breadcrumb %}Benchmark{% endblock %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">MEASURED EVIDENCE / 04</span><h1>Benchmark</h1><p>Two real clips. One manually reviewed crossing list for each. Same tracking and camera settings for both models.</p></div><span class="page-index">11 REVIEWED EVENTS</span></div>
+<section class="benchmark-hero"><div><span class="eyebrow eyebrow-light">WHAT WE CAN CLAIM</span><h2>11 of 11 crossings matched</h2><p>YOLO26s on the two included audited clips. This is a small, single-reviewer event check—not an estimate for other roads or cameras.</p></div><div class="benchmark-figure"><strong>11<span>/11</span></strong><small>WITHIN ±1 SECOND</small></div></section>
+{% if report %}
+<div class="section-heading"><div><span class="eyebrow">MODEL COMPARISON</span><h2>Results by scene</h2></div></div>
+<div class="panel table-scroll"><table class="data-table benchmark-table"><thead><tr><th>SCENE</th><th>MODEL</th><th>MANUAL</th><th>MATCHED</th><th>EXTRA</th><th>MISSED</th><th>RECALL</th><th>TIME</th></tr></thead><tbody>
+{% for clip in report.clips %}{% for name, score in clip.models.items() %}<tr><td><strong>{{ clip.scene }}</strong></td><td>{{ name }}</td><td>{{ clip.manual_crossings }}</td><td>{{ score.tp }}</td><td>{{ score.fp }}</td><td>{{ score.fn }}</td><td><strong>{{ (score.recall * 100)|round|int }}%</strong></td><td>{{ score.processing_s }}s</td></tr>{% endfor %}{% endfor %}
+</tbody></table></div>
+<div class="benchmark-notes"><article class="panel"><span class="eyebrow">METHOD</span><h3>One-to-one event matching</h3><p>Predicted and reviewed events must agree on type, direction, optional vehicle class, and timestamp within ±1 second. Each event can match once.</p></article><article class="panel"><span class="eyebrow">LIMIT</span><h3>Short, single-reviewer sample</h3><p>Eleven crossings across 50 seconds of footage do not establish performance in new light, weather, road layouts, or heavy occlusion. No real stop events were manually labeled.</p></article></div>
+<div class="evidence-note"><strong>Reproduce the calculation</strong><p>Run <code>python benchmark.py</code> inside the project folder. It reads the saved model summaries and manual CSV labels, then rewrites the benchmark JSON.</p></div>
+{% else %}<div class="alert error">The benchmark report is unavailable in this copy.</div>{% endif %}
+{% endblock %}

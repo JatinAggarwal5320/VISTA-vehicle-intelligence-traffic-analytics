@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Overview{% endblock %}
+{% block breadcrumb %}Overview{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> VEHICLE INTELLIGENCE / FIELD REVIEW</span>
+    <h1>Know where to<br><em>look next.</em></h1>
+    <p>Turn traffic footage and road observations into review tasks with exact evidence. Check the result, record a follow-up, and keep uncertain claims out of the decision.</p>
+    <div class="hero-actions">
+      <a class="button button-bright" href="{{ url_for('analyze_page') }}">Analyze a video <span aria-hidden="true">↗</span></a>
+      <a class="text-link light" href="{{ url_for('actions_page') }}">{{ open_actions }} open review leads <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <div class="hero-graphic" aria-hidden="true">
+    <div class="hero-graphic-top">SOURCE 01 <span>FIXED CAMERA / 20 S</span></div>
+    <div class="lane-lines"><span></span><span></span><span></span></div>
+    <div class="hero-count"><small>REVIEWED CROSSINGS</small><strong>07</strong><span>OF 07 IN INCLUDED SIGNAL CLIP</span></div>
+    <div class="hero-graphic-bottom">MODEL <strong>YOLO26s</strong><span>TRACKER <strong>BoT-SORT</strong></span></div>
+  </div>
+</section>
+<section class="metric-grid" aria-label="Project evidence">
+  <div class="metric-card"><span class="metric-label">AUDITED CROSSINGS</span><strong>11<span class="metric-unit"> / 11</span></strong><p>YOLO26s matches in two real clips</p></div>
+  <div class="metric-card"><span class="metric-label">BASELINE MATCHES</span><strong>09<span class="metric-unit"> / 11</span></strong><p>YOLOv8n on the same footage</p></div>
+  <div class="metric-card"><span class="metric-label">ROAD ISSUE RECORDS</span><strong>{{ '%02d'|format(records|length) }}</strong><p>Human-marked, source-attributed observations</p></div>
+</section>
+<div class="section-heading"><div><span class="eyebrow">01 / FIELD EVIDENCE</span><h2>See the count in context</h2></div><a class="text-link" href="{{ url_for('benchmark_page') }}">How we measured this <span>→</span></a></div>
+<section class="overview-grid">
+  <article class="panel video-panel">
+    <div class="panel-top"><div><span class="eyebrow">FEATURED RUN</span><h3>Signalized junction</h3></div><span class="badge verified">MANUALLY AUDITED</span></div>
+    {% if featured %}
+      <video controls preload="metadata" poster="{{ url_for('static', filename='signal_poster.jpg') }}" aria-label="Annotated signalized junction video">
+        <source src="{{ url_for('run_video', run_id=featured.id) }}" type="video/mp4">
+      </video>
+      <div class="video-meta"><span>{{ featured.summary.duration_s }} seconds of real footage</span><span>{{ featured.summary.frames }} frames analyzed</span><span>{{ featured.summary.crossings }} recorded crossings</span></div>
+      <div class="panel-footer"><p>Review the line, track IDs, and timestamps in the annotated clip.</p><a class="text-link" href="{{ url_for('run_detail', run_id=featured.id) }}">Open run <span>→</span></a></div>
+    {% else %}<p class="empty">No saved run yet. Analyze a sample clip to begin.</p>{% endif %}
+  </article>
+  <article class="panel event-panel">
+    <div class="panel-top"><div><span class="eyebrow">EVENT LEDGER</span><h3>Recent crossings</h3></div><span class="small-meta">VIDEO TIME</span></div>
+    {% if featured %}
+      <div class="event-list">
+        {% for event in featured.summary.events if event.type == 'crossing' %}
+        <div class="event-list-row"><span class="event-dot"></span><div><strong>{{ event.vehicle_class|title }}</strong><small>{{ event.direction|replace('_', ' ')|title }}</small></div><span class="event-time">{{ '%.2f'|format(event.time_s) }}s</span></div>
+        {% endfor %}
+      </div>
+      <div class="panel-footer"><span class="muted">Every row links back to a tracked video event.</span><a class="text-link" href="{{ url_for('run_detail', run_id=featured.id) }}">Full log <span>→</span></a></div>
+    {% endif %}
+  </article>
+</section>
+<div class="section-heading"><div><span class="eyebrow">02 / FROM VIDEO TO REPORT</span><h2>One workflow, two outcomes</h2></div></div>
+<section class="workflow-grid">
+  <a class="workflow-card" href="{{ url_for('analyze_page') }}"><span class="workflow-index">01</span><h3>Measure vehicle movement</h3><p>Run a fixed-camera clip through detection and tracking. Export the annotated video and event log.</p><span class="workflow-arrow">↗</span></a>
+  <a class="workflow-card" href="{{ url_for('observations_page') }}"><span class="workflow-index">02</span><h3>Record a road issue</h3><p>Mark a visible defect in a frame, keep the source and location, and create an evidence report.</p><span class="workflow-arrow">↗</span></a>
+</section>
+<div class="evidence-note"><strong>About the result</strong><p>Eleven crossings were reviewed by one person across two short clips. This is a checkable project result, not an accuracy estimate for other roads. The public pothole example is a separate manual observation.</p></div>
+{% endblock %}

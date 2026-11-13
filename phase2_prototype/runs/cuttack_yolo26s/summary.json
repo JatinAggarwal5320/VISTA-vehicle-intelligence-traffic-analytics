@@ -1,0 +1,264 @@
+{
+  "source": "cuttack_link_road_30s.mp4",
+  "model": "yolo26s.pt",
+  "tracker": "botsort.yaml",
+  "fps": 10.0,
+  "width": 960,
+  "height": 540,
+  "frames": 300,
+  "tracked_boxes": 3879,
+  "unique_tracks": 88,
+  "duration_s": 30.0,
+  "processing_s": 18.65,
+  "processing_fps": 16.09,
+  "video": "annotated.mp4",
+  "crossings": 3,
+  "stops": 29,
+  "by_direction": {
+    "right_to_left": 3
+  },
+  "config": {
+    "line_axis": "x",
+    "line_at": 0.5,
+    "zone": [
+      0.05,
+      0.25,
+      0.95,
+      0.95
+    ],
+    "model": "yolo26s.pt",
+    "tracker": "botsort.yaml",
+    "confidence": 0.25,
+    "stop_seconds": 2.0,
+    "max_stationary_speed_px_s": 8.0,
+    "line_margin_px": 5.0,
+    "max_frames": null,
+    "device": null
+  },
+  "events": [
+    {
+      "type": "crossing",
+      "time_s": 2.1,
+      "track_id": 4,
+      "direction": "right_to_left",
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 3.0,
+      "track_id": 9,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 3.9,
+      "track_id": 2,
+      "duration_s": 2.0999999999999996,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 4.3,
+      "track_id": 3,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 6.2,
+      "track_id": 68,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 6.3,
+      "track_id": 31,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 7.7,
+      "track_id": 31,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 8.5,
+      "track_id": 9,
+      "duration_s": 2.0999999999999996,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 8.8,
+      "track_id": 103,
+      "duration_s": 2.1000000000000005,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 10.7,
+      "track_id": 103,
+      "duration_s": 2.0,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 11.1,
+      "track_id": 9,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 11.3,
+      "track_id": 31,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 12.0,
+      "track_id": 191,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 13.7,
+      "track_id": 31,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 15.1,
+      "track_id": 103,
+      "duration_s": 2.0,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "crossing",
+      "time_s": 15.4,
+      "track_id": 7,
+      "direction": "right_to_left",
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 15.4,
+      "track_id": 31,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 17.2,
+      "track_id": 4,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 17.5,
+      "track_id": 237,
+      "duration_s": 2.0999999999999996,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 19.2,
+      "track_id": 299,
+      "duration_s": 2.0,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 19.5,
+      "track_id": 301,
+      "duration_s": 2.0,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 19.7,
+      "track_id": 7,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 20.6,
+      "track_id": 326,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 20.8,
+      "track_id": 255,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 21.2,
+      "track_id": 3,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 21.4,
+      "track_id": 301,
+      "duration_s": 2.0,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 21.7,
+      "track_id": 336,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 22.4,
+      "track_id": 4,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 22.5,
+      "track_id": 349,
+      "duration_s": 2.0,
+      "vehicle_class": "car"
+    },
+    {
+      "type": "stop",
+      "time_s": 23.1,
+      "track_id": 3,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "crossing",
+      "time_s": 26.9,
+      "track_id": 255,
+      "direction": "right_to_left",
+      "vehicle_class": "bus"
+    },
+    {
+      "type": "stop",
+      "time_s": 27.3,
+      "track_id": 4,
+      "duration_s": 2.0,
+      "vehicle_class": "bus"
+    }
+  ]
+}

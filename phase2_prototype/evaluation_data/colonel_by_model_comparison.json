@@ -1,0 +1,67 @@
+{
+  "labels": "evaluation_data/colonel_by_crossings.csv",
+  "label_count": 7,
+  "tolerance_s": 1.0,
+  "runs": [
+    {
+      "summary": "runs/colonel_by_yolov8n_baseline/summary.json",
+      "source": "colonel_by_signal_10fps.mp4",
+      "model": "yolov8n.pt",
+      "tracker": "botsort.yaml",
+      "frames": 200,
+      "processing_s": 6.45,
+      "counts": {
+        "crossings": 7,
+        "stops": 0
+      },
+      "scores": {
+        "crossing": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "stop": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    {
+      "summary": "runs/colonel_by_yolo26s_final/summary.json",
+      "source": "colonel_by_signal_10fps.mp4",
+      "model": "yolo26s.pt",
+      "tracker": "botsort.yaml",
+      "frames": 200,
+      "processing_s": 10.05,
+      "counts": {
+        "crossings": 7,
+        "stops": 0
+      },
+      "scores": {
+        "crossing": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "stop": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  ]
+}

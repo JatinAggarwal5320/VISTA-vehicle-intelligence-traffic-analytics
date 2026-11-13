@@ -1,0 +1,94 @@
+{
+  "method": "One-to-one event matching by type, direction, vehicle class and timestamp within \u00b11 second",
+  "annotation_limit": "Two short clips, one visual reviewer, 11 crossing labels. No real stop labels. Not a general accuracy estimate.",
+  "environment": {
+    "python": "3.13.14",
+    "system": "Darwin",
+    "machine": "arm64",
+    "ultralytics": "8.4.193"
+  },
+  "clips": [
+    {
+      "scene": "Overhead road",
+      "manual_crossings": 4,
+      "models": {
+        "YOLOv8n baseline": {
+          "checkpoint": "yolov8n.pt",
+          "predicted_crossings": 2,
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "processing_s": 9.29,
+          "frames": 377
+        },
+        "YOLO26s primary": {
+          "checkpoint": "yolo26s.pt",
+          "predicted_crossings": 4,
+          "tp": 4,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "processing_s": 15.79,
+          "frames": 377
+        }
+      }
+    },
+    {
+      "scene": "Traffic signal",
+      "manual_crossings": 7,
+      "models": {
+        "YOLOv8n baseline": {
+          "checkpoint": "yolov8n.pt",
+          "predicted_crossings": 7,
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "processing_s": 6.45,
+          "frames": 200
+        },
+        "YOLO26s primary": {
+          "checkpoint": "yolo26s.pt",
+          "predicted_crossings": 7,
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "processing_s": 10.05,
+          "frames": 200
+        }
+      }
+    }
+  ],
+  "overall": {
+    "YOLOv8n baseline": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 2,
+      "processing_s": 15.74,
+      "frames": 577,
+      "precision": 1.0,
+      "recall": 0.8181818181818182,
+      "f1": 0.9
+    },
+    "YOLO26s primary": {
+      "tp": 11,
+      "fp": 0,
+      "fn": 0,
+      "processing_s": 25.84,
+      "frames": 577,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  }
+}
