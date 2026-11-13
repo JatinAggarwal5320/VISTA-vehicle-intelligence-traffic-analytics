@@ -139,10 +139,19 @@ def main() -> None:
             raise RuntimeError(f"Could not export {route}: {response.status_code}")
         page = clean_for_public(response.get_data(as_text=True))
         if route == "/analyze":
+            page = page.replace("NEW ANALYSIS / 01", "LOCAL WORKFLOW / PYTHON")
+            page = page.replace("<h1>Analyze footage</h1>", "<h1>Analyze footage in Python</h1>")
+            page = page.replace("Choose a fixed-camera video, set the counting line, and run the Python model.",
+                                "The public viewer shows saved cases. Run the Python app to create a new one.")
+            page = page.replace("01 — 04", "SOURCE → EVIDENCE")
             page = re.sub(r'<form id="analysis-form".*?</form>',
                           '<div class="panel form-panel"><span class="eyebrow">PYTHON ANALYSIS</span>'
                           '<h2>Run the model locally</h2><p>VISTA processes video with YOLO26s and BoT-SORT in Python. '
-                          'The public site shows saved evidence; running a new clip needs the local Python app.</p>'
+                          'Start the app, choose a clip, then inspect the saved evidence.</p>'
+                          '<div class="setup-steps"><div><b>01</b><span>Install the Python dependencies</span></div>'
+                          '<div><b>02</b><span>Start the local dashboard</span></div>'
+                          '<div><b>03</b><span>Run a sample or upload footage</span></div></div>'
+                          '<pre class="setup-command">cd phase2_prototype\npython3 -m venv .venv\n.venv/bin/pip install -r requirements.txt\n.venv/bin/python web_app.py</pre>'
                           '<a class="button button-dark" href="https://github.com/JatinAggarwal5320/VISTA-vehicle-intelligence-traffic-analytics/tree/main/phase2_prototype">Open Python setup ↗</a></div>',
                           page, flags=re.S)
         page = re.sub(r'((?:href|src|poster)=")(/[^"]*)"', rewrite, page)
